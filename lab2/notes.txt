@@ -1,0 +1,36 @@
+obserwacje 1,2,..., n
+
+y(i) ~ y`(i) = a * x(i) + b
+
+J - funkcja błędu
+J(a, b) = 1/2 * Sum(i=1, i<=n, (y(i) - y`(i))^2) = 1/2 * Sum(i=1, i<=n, (y(i) - a*x(i) - b)^2)
+   |
+   |
+  \|/
+   v
+minimum
+
+Układ równań:
+J(a,b)'/a' = 0
+J(a,b)'/b' = 0
+
+dJ(a,b)/da = 1/2 * Sum(i=1, i<=n, d(y(i) - a*x(i) - b)^2 / da) = 1/2 * Sum(i=1, i<=n, 2 * (y(i) - a*x(i) - b) * d(y(i) - a*x(i) - b)/da) = 
+= Sum(i=1, i<=n, (y(i) - a*x(i) - b) * (-x(i))) = Sum(i=1, i<=n, -x(i)*y(i) + a*[x(i)]^2 + b*x(i)) = 
+= a * Sum(i=1, i<=n, [x(i)]^2) + b * Sum(i=1, i<=n, x(i)) - Sum(i=1, i<=n, x(i) * y(i))
+
+Sx2 = Sum(i=1, i<=n, [x(i)]^2)
+Sx = Sum(i=1, i<=n, x(i))
+Sxy = Sum(i=1, i<=n, x(i) * y(i))
+
+dJ(a,b)/da = a * Sx2 + b * Sx = Sxy
+dJ(a,b)/db = a * Sx + b * n = Sy
+
+a = Wa/W
+b = Wb/W
+
+W = n * Sx2 - Sx^2
+Wa = n * Sxy - Sx * Sy
+Wb = Sx2 * Sy - Sx * Sxy
+
+a = (n * Sxy - Sx * Sy) / (n * Sx2 - Sx^2)
+b = (Sx2 * Sy - Sx * Sxy) / (n * Sx2 - Sx^2)
